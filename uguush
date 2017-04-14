@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 #
 # uguush - upload to uguu.se, teknik.io and 0x0.st
-#
+# milisarge-milislinux
 
 ## CONFIGURATION
 
@@ -36,9 +36,8 @@ fi
 ## FUNCTIONS
 
 depends() {
-  if ! type curl &> /dev/null; then
-    echo >&2 "Checking for curl... [${r}FAILED${n}]"
-    echo '`curl` not found.'
+  if ! type xclip &> /dev/null; then
+    echo >&2 "xclip... [${r}YOK${n}]"
     exit 1
   fi
 }
@@ -102,7 +101,7 @@ screenshot() {
 
 upload() {
   for (( i = 1; i <= 3; i++ )); do
-    printf %s "Try #${i}... "
+    printf %s "Seçenek #${i}... "
 
     case "${usehost}" in
       teknik) upurl='https://api.teknik.io/v1/Upload' ;;
@@ -178,8 +177,8 @@ upload() {
         notify-send 'uguu~' "${result}"
       fi
 
-      echo "[${g}OK${n}]"
-      echo "File has been uploaded: ${result}"
+      echo "[${g}TM${n}]"
+      echo "Dosyanız yüklendi: ${result}"
 
       # if we took a screenshot, remove the temporary file
       if [ -z "${upl}" ]; then
@@ -188,7 +187,7 @@ upload() {
 
       exit
     else
-      echo "[${r}FAILED${n}]"
+      echo "[${r}IPTAL${n}]"
     fi
   done
 }
